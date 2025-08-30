@@ -72,11 +72,11 @@ export const updateStudent = async (req, res) => {
     const { rows } = await pool.query(query, values);
 
     if (rows.length === 0) {
-      return res.status(404).json({ message: '❌ لم يتم العثور على الطالب' });
+      return res.status(404).json({ message: '❌ The student was not found.' });
     }
 
     return res.status(200).json({
-      message: '✅ تم تحديث بيانات الطالب بنجاح',
+      message: '✅ The students data has been successfully updated.',
       data: rows[0]
     });
   } catch (error) {
@@ -93,15 +93,15 @@ export const deleteStudent = async (req, res) => {
     const { rows } = await pool.query(query, [student_id]);
 
     if (rows.length === 0) {
-      return res.status(404).json({ message: '❌ لم يتم العثور على الطالب' });
+      return res.status(404).json({ message: '❌ The student was not found.' });
     }
 
     res.status(200).json({ 
-      message: "✅ تم حذف الطالب نهائيًا من القاعدة",
+      message: "✅ The student has been permanently removed from the database.",
       deletedStudent: rows[0] 
     });
   } catch (err) {
-    console.error("❌ خطأ في الحذف:", err.message);
-    res.status(500).json({ error: "حدث خطأ أثناء الحذف" });
+    console.error("❌ Error in deletion:", err.message);
+    res.status(500).json({ error: "An error occurred while deleting." });
   }
 };

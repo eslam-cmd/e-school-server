@@ -141,7 +141,7 @@ export async function updateTeacherProfile(req, res) {
     const { rowCount } = await pool.query(updateQuery, values);
 
     if (rowCount === 0) {
-      return res.status(400).json({ error: "فشل التحديث" });
+      return res.status(400).json({ error: "Update failed" });
     }
 
     return res.json({
