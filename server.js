@@ -20,7 +20,7 @@ app.use(express.json());
 
 app.use(cors({
   origin:["https://e-school-client.vercel.app",
-    "http://localhost:3000"] ,
+    "http://localhost:3000","http://localhost:8081"] ,
     methods:["GET","POST", "PUT","DELETE"]
    
 }));
