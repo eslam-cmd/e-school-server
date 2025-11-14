@@ -4,7 +4,7 @@ This repository contains the server-side logic for the Student Management Applic
 
 ## 🔗 Project Repositories
 - Backend(server): this repository
-- [Backend](https://github.com/eslam-cmd/e-school-client): contains the design code
+- [Frontend](https://github.com/eslam-cmd/e-school-client): contains the design code
 
 ## 🛠️ Technologies Used
 
