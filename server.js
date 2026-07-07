@@ -15,16 +15,16 @@ import practicalQuizRoutes from "./routes/practicalQuizRoute.js";
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
-
-app.use(express.json());
-
 app.use(cors({
-  origin:["https://manager-students-client.vercel.app",
-    "https://e-school-client.vercel.app",
+  origin:["https://e-school-client.vercel.app",
     "http://localhost:3000"],
-    methods:["GET","POST", "PUT","DELETE"]
+    methods:["GET","POST", "PUT","DELETE"],
+    credentials:true
    
 }));
+app.use(express.json());
+app.use(cookieParser());
+
 // تسجيل مسارات الـ API
 app.use('/api/students', studentRoutes);
 // ---

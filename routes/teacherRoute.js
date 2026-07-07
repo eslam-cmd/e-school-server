@@ -1,22 +1,21 @@
-// server/routes/teacherRoutes.js
 import express from "express";
 import {
   loginTeacher,
   getTeacherProfile,
-  updateTeacherProfile
+  updateTeacherProfile,
 } from "../controllers/teacherController.js";
+
+import { verifyAuth } from "../middleware/authMidleware.js";
 
 const router = express.Router();
 
 // تسجيل الدخول
 router.post("/login", loginTeacher);
 
-// جلب بروفايل المدرس المحمّل
-router.get("/me", getTeacherProfile);
+// محمية
+router.get("/me", verifyAuth, getTeacherProfile);
 
-// تعديل الإيميل أو الباسورد
-router.put("/update", updateTeacherProfile);
-
-// تسجيل الخروج
+// محمية
+router.put("/update", verifyAuth, updateTeacherProfile);
 
 export default router;
