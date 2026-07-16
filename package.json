@@ -7,7 +7,7 @@
   "scripts": {
     "server": "nodemon server/index.js",
     "client": "npm start --prefix client",
-    "dev": "nodemon server.js",
+    "dev": "npx nodemon server.js",
     "start": "node dist/server.js",
     "build": "tsc"
   },
@@ -23,6 +23,7 @@
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
     "multer": "^2.0.2",
+    "nodemailer": "^9.0.3",
     "pg": "^8.16.3",
     "uuid": "^11.1.0"
   },
