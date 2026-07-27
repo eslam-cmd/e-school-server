@@ -31,12 +31,11 @@ app.use(
   }),
 );
 
-// Middlewares
 app.use(express.json());
 app.use(cookieParser());
 
-// Rate Limit عام على جميع الطلبات
-app.use(generalLimiter);
+// Rate Limit للـ API فقط
+app.use("/api", generalLimiter);
 
 // Routes
 app.use("/api/students", studentRoutes);
@@ -48,8 +47,7 @@ app.use("/api/students/account", accountStudentRoute);
 app.use("/api/teacher", teacherRoute);
 app.use("/api/practical-notes", practicalNotesRoutes);
 app.use("/api/practical-quiz", practicalQuizRoutes);
-
-// Root  
+// Root
 app.get("/", (req, res) => {
   res.send("✅ السيرفر يعمل بنجاح");
 });
