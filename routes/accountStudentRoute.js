@@ -1,10 +1,14 @@
-// routes/studentRouter.js
 import express from "express";
-import { getStudentData } from "../controllers/accountStudentController.js";
+import {
+  loginStudent,
+  getStudentData,
+  logoutStudent,
+} from "../controllers/accountStudentController.js";
 
 const router = express.Router();
 
-// GET /api/students/:student_id
-router.get("/:student_id", getStudentData);
+router.post("/login", loginStudent);
+router.get("/me", getStudentData);
+router.post("/logout", logoutStudent);
 
 export default router;

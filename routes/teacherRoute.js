@@ -1,22 +1,25 @@
-// server/routes/teacherRoutes.js
 import express from "express";
 import {
   loginTeacher,
+  verifyOTP,
+  forgotPassword,
+  resetPassword,
   getTeacherProfile,
-  updateTeacherProfile
+  updateTeacherProfile,
+  logoutTeacher,
 } from "../controllers/teacherController.js";
 
 const router = express.Router();
 
-// تسجيل الدخول
+// 🟢 مسارات الدخول واستعادة الحساب
 router.post("/login", loginTeacher);
+router.post("/verify-otp", verifyOTP);
+router.post("/forgot-password", forgotPassword);
+router.post("/reset-password", resetPassword);
+router.post("/logout", logoutTeacher);
 
-// جلب بروفايل المدرس المحمّل
+// 🔒 مسارات الحساب الموثقة (التحقق أصبح داخلياً في الكنترولر)
 router.get("/me", getTeacherProfile);
-
-// تعديل الإيميل أو الباسورد
 router.put("/update", updateTeacherProfile);
-
-// تسجيل الخروج
 
 export default router;
