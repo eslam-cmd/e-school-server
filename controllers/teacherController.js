@@ -6,11 +6,10 @@ import { transporter } from "../config/mailer.js";
 const COOKIE_NAME = "authToken";
 const isProduction = process.env.NODE_ENV === "production";
 
-// ✅ تعريف خيارات الكوكيز بشكل صحيح كمتغير ثابت
 const COOKIE_OPTIONS = {
   httpOnly: true,
-  secure: isProduction,
-  sameSite: isProduction ? "none" : "lax",
+  secure: true,
+  sameSite: "none",
   maxAge: 24 * 60 * 60 * 1000, // 24 ساعة
 };
 
