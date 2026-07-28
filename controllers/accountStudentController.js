@@ -3,14 +3,12 @@ import { pool } from "../config/db.js";
 
 const STUDENT_COOKIE = "studentAuthToken";
 
-// ✅ خيارات الكوكي الصارمة للـ Cross-Domain
-const COOKIE_OPTIONS = {
+res.cookie('token', token, {
   httpOnly: true,
-  secure: true, // يجب أن تكون true دائماً لتعمل مع sameSite: "none"
-  sameSite: "none", // ضروري جداً لنقل الكوكي بين نطاقين مختلفين
-  maxAge: 7 * 24 * 60 * 60 * 1000, // 7 أيام
-  path: "/",
-};
+  secure: true,
+  sameSite: 'none', 
+  maxAge: 24 * 60 * 60 * 1000 
+});
 
 // 1️⃣ تسجيل الدخول
 export async function loginStudent(req, res) {

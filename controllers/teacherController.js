@@ -6,14 +6,12 @@ import { transporter } from "../config/mailer.js";
 const COOKIE_NAME = "authToken";
 const isProduction = process.env.NODE_ENV === "production";
 
-const COOKIE_OPTIONS = {
+res.cookie("token", token, {
   httpOnly: true,
-  secure: isProduction,
-  sameSite: isProduction ? "none" : "lax",
-  maxAge: 2 * 60 * 60 * 1000, // two hours
-  path: "/",
-};
-
+  secure: true,
+  sameSite: "none",
+  maxAge: 24 * 60 * 60 * 1000,
+});
 // 1️⃣ Login request and send OTP
 export async function loginTeacher(req, res) {
   const { email, password } = req.body;
