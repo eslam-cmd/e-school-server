@@ -3,14 +3,15 @@ import { pool } from "../config/db.js";
 
 const STUDENT_COOKIE = "studentAuthToken";
 
-res.cookie('token', token, {
+// ✅ 1️⃣ تعريف خيارات الكوكي بشكل منفصل ونظيف
+const COOKIE_OPTIONS = {
   httpOnly: true,
   secure: true,
-  sameSite: 'none', 
-  maxAge: 24 * 60 * 60 * 1000 
-});
+  sameSite: "none",
+  maxAge: 7 * 24 * 60 * 60 * 1000, // 7 أيام تتوافق مع مدة الـ JWT
+};
 
-// 1️⃣ تسجيل الدخول
+// 2️⃣ تسجيل الدخول
 export async function loginStudent(req, res) {
   const { student_id } = req.body;
 
@@ -36,7 +37,7 @@ export async function loginStudent(req, res) {
       { expiresIn: "7d" },
     );
 
-    // زرق الكوكي المشفرة
+    // ✅ زرق الكوكي المشفرة بالخيارات الصحيحة
     res.cookie(STUDENT_COOKIE, token, COOKIE_OPTIONS);
 
     return res.json({
@@ -49,7 +50,7 @@ export async function loginStudent(req, res) {
   }
 }
 
-// 2️⃣ جلب بيانات الطالب الموثق عبر الكوكي حصراً
+// 3️⃣ جلب بيانات الطالب الموثق عبر الكوكي حصراً
 export async function getStudentData(req, res) {
   try {
     const token = req.cookies?.[STUDENT_COOKIE];
@@ -94,7 +95,7 @@ export async function getStudentData(req, res) {
   }
 }
 
-// 3️⃣ تسجيل الخروج
+// 4️⃣ تسجيل الخروج
 export async function logoutStudent(req, res) {
   try {
     res.clearCookie(STUDENT_COOKIE, COOKIE_OPTIONS);
