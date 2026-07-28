@@ -3,12 +3,11 @@ import { pool } from "../config/db.js";
 
 const STUDENT_COOKIE = "studentAuthToken";
 
-// ✅ 1️⃣ تعريف خيارات الكوكي بشكل منفصل ونظيف
 const COOKIE_OPTIONS = {
   httpOnly: true,
   secure: true,
   sameSite: "none",
-  maxAge: 7 * 24 * 60 * 60 * 1000, // 7 أيام تتوافق مع مدة الـ JWT
+  maxAge: 7 * 24 * 60 * 60 * 1000,
 };
 
 // 2️⃣ تسجيل الدخول
