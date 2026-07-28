@@ -49,10 +49,8 @@ const corsOptions = {
   credentials: true,
 };
 
+// تطبيق CORS عالمياً (يتكفل بجميع طلبات OPTIONS تلقائياً)
 app.use(cors(corsOptions));
-
-// 🚨 مهم جداً: معالجة طلبات Preflight (OPTIONS) تلقائياً على كل المسارات
-app.options("*", cors(corsOptions));
 
 // 3️⃣ الميدل وير الأساسية
 app.use(cookieParser());

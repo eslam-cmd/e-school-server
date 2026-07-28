@@ -6,12 +6,14 @@ import { transporter } from "../config/mailer.js";
 const COOKIE_NAME = "authToken";
 const isProduction = process.env.NODE_ENV === "production";
 
-res.cookie("token", token, {
+// ✅ تعريف خيارات الكوكيز بشكل صحيح كمتغير ثابت
+const COOKIE_OPTIONS = {
   httpOnly: true,
-  secure: true,
-  sameSite: "none",
-  maxAge: 24 * 60 * 60 * 1000,
-});
+  secure: isProduction,
+  sameSite: isProduction ? "none" : "lax",
+  maxAge: 24 * 60 * 60 * 1000, // 24 ساعة
+};
+
 // 1️⃣ Login request and send OTP
 export async function loginTeacher(req, res) {
   const { email, password } = req.body;
@@ -131,6 +133,7 @@ export async function verifyOTP(req, res) {
       { expiresIn: "2h" },
     );
 
+    // ✅ تعيين الكوكي داخل الدالة باستخدام الاختيارات المعرفة
     res.cookie(COOKIE_NAME, token, COOKIE_OPTIONS);
 
     // 📧 إرسال إشعار بريدي لتنبيه الأستاذ بنجاح عملية تسجيل الدخول
