@@ -9,7 +9,7 @@
     "client": "npm start --prefix client",
     "dev": "nodemon server.js",
     "start": "node dist/server.js",
-    "build": "tsc",
+    "build": "echo \"No build step required for JS backend\"",
     "test": "npx jest --detectOpenHandles --forceExit"
   },
   "keywords": [],
